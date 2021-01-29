@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_vertical"
+    android:background="@drawable/bgapp"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/text_question"
+        android:layout_width="325dp"
+        android:layout_height="138dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/domanda"
+        android:text="\nQuale genere musicale\n è stato maggiormente\n ascoltato negli anni '80?"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+    <LinearLayout
+        android:id="@+id/options_container"
+        android:layout_width="276dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/text_question"
+        android:layout_marginTop="50dp">
+
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="276dp"
+            android:layout_height="69dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/bottone"
+            android:text="ANS 1"
+            android:textSize="22dp"
+            android:textColor="@color/black" />
+
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="276dp"
+            android:layout_height="69dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/bottone"
+            android:text="ANS 2"
+            android:textSize="22dp"
+            android:textColor="@color/black" />
+
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="276dp"
+            android:layout_height="69dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/bottone"
+            android:text="ANS 3"
+            android:textSize="22dp"
+            android:textColor="@color/black" />
+
+
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="276dp"
+            android:layout_height="69dp"
+            android:background="@drawable/bottone"
+            android:text="ANS 4"
+            android:textSize="22dp"
+            android:textColor="@color/black" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/next_button"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/options_container"
+        android:layout_alignRight="@id/text_question"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/next"
+        android:text="NEXT"
+        android:textColor="@color/white"
+        android:textSize="18dp"
+        android:enabled="false"
+        android:alpha="0"/>
+
+
+</RelativeLayout>

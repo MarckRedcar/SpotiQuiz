@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">SpotiQuiz</string>
+    <string name="bottone">\@drawable/bottone</string>
+</resources>
