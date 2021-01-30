@@ -22,6 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="50dp"
+            android:background="@drawable/domanda"
             android:text="level"
             android:textAlignment="center"
             android:textColor="@color/white"
@@ -29,17 +30,5 @@
             android:textSize="30dp" />
 
     </LinearLayout>
-
-    <Button
-        android:id="@+id/home_button"
-        android:layout_width="276dp"
-        android:layout_height="69dp"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/score_layout"
-        android:background="@drawable/bottone"
-        android:text="BACK TO HOME"
-        android:textSize="22dp"
-        android:textColor="@color/black" />
-
 
 </RelativeLayout>

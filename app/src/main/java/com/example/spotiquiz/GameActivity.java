@@ -1,6 +1,7 @@
 package com.example.spotiquiz;
 
 import android.animation.Animator;
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -41,13 +42,13 @@ public class GameActivity extends AppCompatActivity {
         list.add(new QuestionModel("\nquestion 1", "a", "b", "c", "d", "a"));
         list.add(new QuestionModel("\nquestion 2", "a", "b", "c", "d", "d"));
         list.add(new QuestionModel("\nquestion 3", "a", "b", "c", "d", "b"));
-        list.add(new QuestionModel("\nquestion 4", "a", "b", "c", "d", "a"));
-        list.add(new QuestionModel("\nquestion 5", "a", "b", "c", "d", "c"));
-        list.add(new QuestionModel("\nquestion 6", "a", "b", "c", "d", "a"));
-        list.add(new QuestionModel("\nquestion 7", "a", "b", "c", "d", "d"));
-        list.add(new QuestionModel("\nquestion 8", "a", "b", "c", "d", "b"));
-        list.add(new QuestionModel("\nquestion 9", "a", "b", "c", "d", "c"));
-        list.add(new QuestionModel("\nquestion 10", "a", "b", "c", "d", "c"));
+        //list.add(new QuestionModel("\nquestion 4", "a", "b", "c", "d", "a"));
+        //list.add(new QuestionModel("\nquestion 5", "a", "b", "c", "d", "c"));
+        //list.add(new QuestionModel("\nquestion 6", "a", "b", "c", "d", "a"));
+        //list.add(new QuestionModel("\nquestion 7", "a", "b", "c", "d", "d"));
+        //list.add(new QuestionModel("\nquestion 8", "a", "b", "c", "d", "b"));
+        //list.add(new QuestionModel("\nquestion 9", "a", "b", "c", "d", "c"));
+        //list.add(new QuestionModel("\nquestion 10", "a", "b", "c", "d", "c"));
 
         for (int i = 0; i < 4; i++) {
             optionsContainer.getChildAt(i).setOnClickListener(new View.OnClickListener() {
@@ -66,8 +67,10 @@ public class GameActivity extends AppCompatActivity {
                 nextBtn.setAlpha(0);
                 enableOption(true);
                 position++;
+                //score activity
                 if (position == list.size()) {
-                    //score activity
+                    Intent scoreIntent = new Intent(GameActivity.this,ScoreActivity.class);
+                    startActivity(scoreIntent);
                     return;
                 }
                 count = 0;

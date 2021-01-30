@@ -11,24 +11,36 @@ import com.example.spotiquiz.GameActivity;
 import com.example.spotiquiz.R;
 
 public class MainActivity extends AppCompatActivity {
-    private Button button;
+    private Button gameBtn;
+    private Button statsBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        button = (Button) findViewById(R.id.game_button);
-        button.setOnClickListener(new View.OnClickListener() {
+        gameBtn = (Button) findViewById(R.id.game_button);
+        gameBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openGameActivity();
             }
         });
+
+        statsBtn = (Button) findViewById(R.id.stats_button);
+        statsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) { openStatsActivity(); }
+        });
     }
 
     public void openGameActivity() {
         Intent intent = new Intent(this, GameActivity.class);
+        startActivity(intent);
+    }
+
+    public void openStatsActivity() {
+        Intent intent = new Intent(this, StatsActivity.class);
         startActivity(intent);
     }
 }
