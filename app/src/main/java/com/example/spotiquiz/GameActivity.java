@@ -132,12 +132,12 @@ public class GameActivity extends AppCompatActivity {
         if (selectedOption.getText().toString().equals(list.get(position).getCorrectANS())) {
             //correct
             score++;
-            selectedOption.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#4CAF50")));
+            selectedOption.setBackgroundResource(R.drawable.bottone_verde);
         } else {
             //incorrect
-            selectedOption.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#ff0000")));
+            selectedOption.setBackgroundResource(R.drawable.bottone_rosso);
             Button correctOption = (Button) optionsContainer.findViewWithTag(list.get(position).getCorrectANS());
-            correctOption.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#4CAF50")));
+            correctOption.setBackgroundResource(R.drawable.bottone_verde);
         }
     }
 
@@ -145,13 +145,7 @@ public class GameActivity extends AppCompatActivity {
         for (int i = 0; i < 4; i++) {
             optionsContainer.getChildAt(i).setEnabled(enable);
             if (enable) {
-                //optionsContainer.getChildAt(i).setBackgroundTintList(ColorStateList.valueOf(Color.TRANSPARENT));
-                //optionsContainer.getChildAt(i).setBackground(defBtn.getBackground());
-                //optionsContainer.getChildAt(i).setBackgroundResource(android.R.drawable.btn_default);
-                optionsContainer.getChildAt(i).setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#ffffff")));
-                //optionsContainer.getChildAt(i).getBackground().clearColorFilter();
-                //optionsContainer.getChildAt(i).setBackgroundTintList(ColorStateList.valueOf(Color.YELLOW));
-
+                optionsContainer.getChildAt(i).setBackgroundResource(R.drawable.bottone);
             }
         }
     }
