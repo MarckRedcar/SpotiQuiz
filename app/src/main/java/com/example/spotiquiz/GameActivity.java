@@ -42,13 +42,13 @@ public class GameActivity extends AppCompatActivity {
         list.add(new QuestionModel("\nquestion 1", "a", "b", "c", "d", "a"));
         list.add(new QuestionModel("\nquestion 2", "a", "b", "c", "d", "d"));
         list.add(new QuestionModel("\nquestion 3", "a", "b", "c", "d", "b"));
-        //list.add(new QuestionModel("\nquestion 4", "a", "b", "c", "d", "a"));
-        //list.add(new QuestionModel("\nquestion 5", "a", "b", "c", "d", "c"));
-        //list.add(new QuestionModel("\nquestion 6", "a", "b", "c", "d", "a"));
-        //list.add(new QuestionModel("\nquestion 7", "a", "b", "c", "d", "d"));
-        //list.add(new QuestionModel("\nquestion 8", "a", "b", "c", "d", "b"));
-        //list.add(new QuestionModel("\nquestion 9", "a", "b", "c", "d", "c"));
-        //list.add(new QuestionModel("\nquestion 10", "a", "b", "c", "d", "c"));
+        list.add(new QuestionModel("\nquestion 4", "a", "b", "c", "d", "a"));
+        list.add(new QuestionModel("\nquestion 5", "a", "b", "c", "d", "c"));
+        list.add(new QuestionModel("\nquestion 6", "a", "b", "c", "d", "a"));
+        list.add(new QuestionModel("\nquestion 7", "a", "b", "c", "d", "d"));
+        list.add(new QuestionModel("\nquestion 8", "a", "b", "c", "d", "b"));
+        list.add(new QuestionModel("\nquestion 9", "a", "b", "c", "d", "c"));
+        list.add(new QuestionModel("\nquestion 10", "a", "b", "c", "d", "c"));
 
         for (int i = 0; i < 4; i++) {
             optionsContainer.getChildAt(i).setOnClickListener(new View.OnClickListener() {
@@ -70,6 +70,8 @@ public class GameActivity extends AppCompatActivity {
                 //score activity
                 if (position == list.size()) {
                     Intent scoreIntent = new Intent(GameActivity.this,ScoreActivity.class);
+                    scoreIntent.putExtra("score", score);
+                    scoreIntent.putExtra("total", list.size());
                     startActivity(scoreIntent);
                     return;
                 }
