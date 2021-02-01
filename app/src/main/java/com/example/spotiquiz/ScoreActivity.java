@@ -7,38 +7,37 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class ScoreActivity extends AppCompatActivity {
     private Button homeBtn;
-    //private LinearLayout scoreLayout;
-    private int score;
+    private TextView scored, total;
     private ImageView levelAvatar;
     private TextView levelScore;
-    //private List<LevelModel> list;
+    //private int score;
+    private float perc_score;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score);
 
-        homeBtn = findViewById(R.id.home_button);
         levelAvatar = findViewById(R.id.level_avatar);
         levelScore = findViewById(R.id.level_score);
-        //scoreLayout = findViewById(R.id.score_layout);
+        scored = findViewById(R.id.scored);
+        total = findViewById(R.id.total);
+        homeBtn = findViewById(R.id.home_button);
 
-        checkScoreLayout((int) score, (ImageView) levelAvatar, (TextView) levelScore);
-        //list = new ArrayList<>();
-        //list.add(new LevelModel(scoreLayout == ""));
+        scored.setText(String.valueOf(getIntent().getIntExtra("score", 0)));
+        total.setText(String.valueOf(getIntent().getIntExtra("total", 0)));
+
+        checkScoreLayout((float) perc_score, (ImageView) levelAvatar, (TextView) levelScore);
+
 
         homeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openMainActivity();;
+                openMainActivity();
             }
         });
     }
@@ -48,23 +47,24 @@ public class ScoreActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void checkScoreLayout(int score, ImageView levelAvatar, TextView levelScore) {
-        //n = 0;
-        score = 9;
-        if (score < 4) {
+    private void checkScoreLayout(float perc_score, ImageView levelAvatar, TextView levelScore) {
+        String scoredString = scored.getText().toString();
+        String totalString = total.getText().toString();
+        int score = Integer.parseInt(scoredString);
+        int tot = Integer.parseInt(totalString);
+        perc_score = (score * 100) / tot;
+        if (perc_score <= 30) {
             levelAvatar.setBackgroundResource(R.drawable.rookie);
             levelScore.setText("ROOKIE");
-        } else if (score > 3 && score < 7){
+        } else if (perc_score > 30 && perc_score <= 60){
             levelAvatar.setBackgroundResource(R.drawable.veteran);
             levelScore.setText("VETERAN");
-        } else if (score > 6 && score < 10){
+        } else if (perc_score > 60 && perc_score < 100){
             levelAvatar.setBackgroundResource(R.drawable.master);
             levelScore.setText("MASTER");
         } else {
-            levelAvatar.setBackgroundResource(R.drawable.veteran);
+            //levelAvatar.setBackgroundResource(R.drawable.veteran);
             levelScore.setText("LEGEND");
         }
-
-
     }
 }
