@@ -9,6 +9,20 @@
     android:background="@drawable/bgapp"
     tools:context=".MainActivity">
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_centerHorizontal="true"
+        android:indeterminate="false"
+        android:max="10"
+        android:minHeight="50dp"
+        android:progress="0">
+
+    </ProgressBar>
+
+
     <TextView
         android:id="@+id/text_question"
         android:layout_width="325dp"
@@ -18,7 +32,8 @@
         android:background="@drawable/domanda"
         android:textAlignment="center"
         android:textColor="@color/black"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        />
 
     <LinearLayout
         android:id="@+id/options_container"
@@ -27,7 +42,7 @@
         android:orientation="vertical"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/text_question"
-        android:layout_marginTop="50dp" >
+        android:layout_marginTop="50dp">
 
 
         <Button

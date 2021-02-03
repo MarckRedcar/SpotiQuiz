@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
@@ -43,12 +44,12 @@ public class GameActivity extends AppCompatActivity {
         list.add(new QuestionModel("\nquestion 2", "a", "b", "c", "d", "d"));
         list.add(new QuestionModel("\nquestion 3", "a", "b", "c", "d", "b"));
         list.add(new QuestionModel("\nquestion 4", "a", "b", "c", "d", "a"));
-        list.add(new QuestionModel("\nquestion 5", "a", "b", "c", "d", "c"));
-        list.add(new QuestionModel("\nquestion 6", "a", "b", "c", "d", "a"));
-        list.add(new QuestionModel("\nquestion 7", "a", "b", "c", "d", "d"));
-        list.add(new QuestionModel("\nquestion 8", "a", "b", "c", "d", "b"));
-        list.add(new QuestionModel("\nquestion 9", "a", "b", "c", "d", "c"));
-        list.add(new QuestionModel("\nquestion 10", "a", "b", "c", "d", "c"));
+        //list.add(new QuestionModel("\nquestion 5", "a", "b", "c", "d", "c"));
+        //list.add(new QuestionModel("\nquestion 6", "a", "b", "c", "d", "a"));
+        //list.add(new QuestionModel("\nquestion 7", "a", "b", "c", "d", "d"));
+        //list.add(new QuestionModel("\nquestion 8", "a", "b", "c", "d", "b"));
+        //list.add(new QuestionModel("\nquestion 9", "a", "b", "c", "d", "c"));
+        //list.add(new QuestionModel("\nquestion 10", "a", "b", "c", "d", "c"));
 
         for (int i = 0; i < 4; i++) {
             optionsContainer.getChildAt(i).setOnClickListener(new View.OnClickListener() {
@@ -81,6 +82,19 @@ public class GameActivity extends AppCompatActivity {
         });
     }
 
+    public boolean onKeyDown(int key_code, KeyEvent key_event) {
+        if  (key_code == KeyEvent.KEYCODE_BACK) {
+            super.onKeyDown(key_code, key_event);
+            return true;
+        }
+        return false;
+    }
+
+    /*
+    public void onBackPressed() {
+
+    }
+    */
     private void playAnim(View view, final int value, String data) {
         view.animate().alpha(value).scaleX(value).scaleY(value).setDuration(500).setStartDelay(100)
                 .setInterpolator(new DecelerateInterpolator()).setListener(new Animator.AnimatorListener() {

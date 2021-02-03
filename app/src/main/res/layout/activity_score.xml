@@ -49,8 +49,7 @@
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textStyle="bold"
-                android:textSize="18dp"
-                android:text="5"/>
+                android:textSize="18dp" />
 
             <TextView
                 android:id="@+id/out_of"
@@ -69,8 +68,7 @@
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textStyle="bold"
-                android:textSize="18dp"
-                android:text="10"/>
+                android:textSize="18dp" />
 
 
         </LinearLayout>

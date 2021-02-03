@@ -63,7 +63,7 @@ public class ScoreActivity extends AppCompatActivity {
             levelAvatar.setBackgroundResource(R.drawable.master);
             levelScore.setText("MASTER");
         } else {
-            //levelAvatar.setBackgroundResource(R.drawable.veteran);
+            levelAvatar.setBackgroundResource(R.drawable.legend);
             levelScore.setText("LEGEND");
         }
     }
