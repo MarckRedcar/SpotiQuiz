@@ -1,10 +1,14 @@
 package com.example.spotiquiz;
 
 import android.animation.Animator;
+import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -15,6 +19,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.spotiquiz.R;
@@ -164,6 +169,44 @@ public class GameActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        DisplayMetrics dm = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
+
+        int width = dm.widthPixels;
+        int height = dm.heightPixels;
+
+        TextView quitTxt = new TextView(this);
+        quitTxt.setText("QUIT GAME\nAre you sure?");
+        quitTxt.setGravity(Gravity.CENTER);
+        quitTxt.setPadding(50, 20, 50, 30);
+        quitTxt.setTextSize(18F);
+        quitTxt.setTextColor(Color.WHITE);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(GameActivity.this);
+
+        builder.setCancelable(true);
+        builder.setCustomTitle(quitTxt);
+        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                finish();
+            }
+        });
+        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.cancel();
+            }
+        });
+
+        AlertDialog quit = builder.create();
+        quit.show();
+        quit.getWindow().setLayout((int)(width*.9), (int)(height*.2));
+        quit.getWindow().setBackgroundDrawableResource(R.drawable.info);
     }
 
     private void checkAnswer(Button selectedOption) {

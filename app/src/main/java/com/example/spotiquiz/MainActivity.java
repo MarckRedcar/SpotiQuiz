@@ -117,10 +117,6 @@ public class MainActivity extends AppCompatActivity {
         info.show();
         info.getWindow().setLayout((int)(width*.9), (int)(height*.2));
         info.getWindow().setBackgroundDrawableResource(R.drawable.info);
-
-
-
-
     }
 
 }
