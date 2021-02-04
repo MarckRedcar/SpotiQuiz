@@ -6,7 +6,10 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -18,6 +21,7 @@ import com.example.spotiquiz.R;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class GameActivity extends AppCompatActivity {
 
@@ -29,6 +33,7 @@ public class GameActivity extends AppCompatActivity {
     private List<QuestionModel> list;
     private int position = 0;
     private int score = 0;
+    private Animation scaleUp, scaleDown;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +43,9 @@ public class GameActivity extends AppCompatActivity {
         question = findViewById(R.id.text_question);
         optionsContainer = findViewById(R.id.options_container);
         nextBtn = findViewById(R.id.next_button);
+
+        scaleUp = AnimationUtils.loadAnimation(this, R.anim.scale_up);
+        scaleDown = AnimationUtils.loadAnimation(this, R.anim.scale_down);
 
         list = new ArrayList<>();
         list.add(new QuestionModel("\nquestion 1", "a", "b", "c", "d", "a"));
@@ -61,9 +69,26 @@ public class GameActivity extends AppCompatActivity {
         }
 
         playAnim(question, 0, list.get(position).getQuestion());
+        nextBtn.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                if (motionEvent.getAction()==MotionEvent.ACTION_DOWN) {
+                    nextBtn.startAnimation(scaleUp);
+                } else if (motionEvent.getAction()==MotionEvent.ACTION_UP) {
+                    nextBtn.startAnimation(scaleDown);
+                }
+                return false;
+            }
+        });
+
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                try {
+                    Thread.sleep(250);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 nextBtn.setEnabled(false);
                 nextBtn.setAlpha(0);
                 enableOption(true);
