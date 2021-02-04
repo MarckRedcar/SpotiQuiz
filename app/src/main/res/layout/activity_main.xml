@@ -15,17 +15,18 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_marginRight="25dp"
-        android:layout_marginTop="-70dp"
+        android:layout_marginTop="70dp"
         android:text="Info"
         android:textColor="@color/white"
         android:textSize="18dp" />
 
     <LinearLayout
         android:id="@+id/menu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_centerHorizontal="true">
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="110dp">
 
         <ImageView
             android:id="@+id/imageView"
@@ -39,8 +40,7 @@
             android:id="@+id/game_button"
             android:layout_width="276dp"
             android:layout_height="69dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
             android:background="@drawable/bottone"
             android:text="GAME"
             android:textSize="22dp" />
@@ -49,11 +49,10 @@
             android:id="@+id/stats_button"
             android:layout_width="276dp"
             android:layout_height="69dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
             android:background="@drawable/bottone"
-            android:text="CURIOSITIES"
+            android:text="TRIVIA"
             android:textSize="22dp" />
 
     </LinearLayout>
