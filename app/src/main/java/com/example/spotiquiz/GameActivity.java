@@ -17,6 +17,7 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
@@ -34,11 +35,15 @@ public class GameActivity extends AppCompatActivity {
     private TextView question;
     private LinearLayout optionsContainer;
     private Button nextBtn;
-    private int count = 0;
     private List<QuestionModel> list;
+    private Animation scaleUp, scaleDown;
+    private ProgressBar progBar;
+    private TextView nQuestProg;
+    private int count = 0;
     private int position = 0;
     private int score = 0;
-    private Animation scaleUp, scaleDown;
+    private int nQuest = 1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +53,8 @@ public class GameActivity extends AppCompatActivity {
         question = findViewById(R.id.text_question);
         optionsContainer = findViewById(R.id.options_container);
         nextBtn = findViewById(R.id.next_button);
+        progBar = findViewById(R.id.progress_bar);
+        nQuestProg = findViewById(R.id.n_quest_progress);
 
         scaleUp = AnimationUtils.loadAnimation(this, R.anim.scale_up);
         scaleDown = AnimationUtils.loadAnimation(this, R.anim.scale_down);
@@ -57,7 +64,7 @@ public class GameActivity extends AppCompatActivity {
         list.add(new QuestionModel("\nquestion 2", "a", "b", "c", "d", "d"));
         list.add(new QuestionModel("\nquestion 3", "a", "b", "c", "d", "b"));
         list.add(new QuestionModel("\nquestion 4", "a", "b", "c", "d", "a"));
-        //list.add(new QuestionModel("\nquestion 5", "a", "b", "c", "d", "c"));
+        list.add(new QuestionModel("\nquestion 5", "a", "b", "c", "d", "c"));
         //list.add(new QuestionModel("\nquestion 6", "a", "b", "c", "d", "a"));
         //list.add(new QuestionModel("\nquestion 7", "a", "b", "c", "d", "d"));
         //list.add(new QuestionModel("\nquestion 8", "a", "b", "c", "d", "b"));
@@ -73,7 +80,11 @@ public class GameActivity extends AppCompatActivity {
             });
         }
 
+        progBar.setMax(list.size());
+        nQuestProg.setText(nQuest + "/" + list.size());
         playAnim(question, 0, list.get(position).getQuestion());
+
+        //pressed next button animation
         nextBtn.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -98,33 +109,34 @@ public class GameActivity extends AppCompatActivity {
                 nextBtn.setAlpha(0);
                 enableOption(true);
                 position++;
+                nQuest++;
                 //score activity
                 if (position == list.size()) {
+                    nextBtn.setText("SCORE");
                     Intent scoreIntent = new Intent(GameActivity.this,ScoreActivity.class);
                     scoreIntent.putExtra("score", score);
                     scoreIntent.putExtra("total", list.size());
                     startActivity(scoreIntent);
+                    finish();
                     return;
                 }
                 count = 0;
+                progBar.setProgress(nQuest);
+                nQuestProg.setText(nQuest + "/" + list.size());
                 playAnim(question, 0, list.get(position).getQuestion());
             }
         });
     }
-
+/*
     public boolean onKeyDown(int key_code, KeyEvent key_event) {
         if  (key_code == KeyEvent.KEYCODE_BACK) {
             super.onKeyDown(key_code, key_event);
             return true;
         }
         return false;
-    }
+    }*/
 
-    /*
-    public void onBackPressed() {
-
-    }
-    */
+    //question change animation
     private void playAnim(View view, final int value, String data) {
         view.animate().alpha(value).scaleX(value).scaleY(value).setDuration(500).setStartDelay(100)
                 .setInterpolator(new DecelerateInterpolator()).setListener(new Animator.AnimatorListener() {
@@ -171,6 +183,7 @@ public class GameActivity extends AppCompatActivity {
         });
     }
 
+    // Alert Dialog Exit Game
     @Override
     public void onBackPressed() {
         DisplayMetrics dm = new DisplayMetrics();
@@ -180,9 +193,9 @@ public class GameActivity extends AppCompatActivity {
         int height = dm.heightPixels;
 
         TextView quitTxt = new TextView(this);
-        quitTxt.setText("QUIT GAME\nAre you sure?");
+        quitTxt.setText("QUIT GAME\n\nAre you sure?");
         quitTxt.setGravity(Gravity.CENTER);
-        quitTxt.setPadding(50, 20, 50, 30);
+        quitTxt.setPadding(50, 30, 50, 30);
         quitTxt.setTextSize(18F);
         quitTxt.setTextColor(Color.WHITE);
 
@@ -205,8 +218,16 @@ public class GameActivity extends AppCompatActivity {
 
         AlertDialog quit = builder.create();
         quit.show();
-        quit.getWindow().setLayout((int)(width*.9), (int)(height*.2));
+        quit.getWindow().setLayout((int)(width*.6), (int)(height*.2));
         quit.getWindow().setBackgroundDrawableResource(R.drawable.info);
+
+        Button btnPositive = quit.getButton(AlertDialog.BUTTON_POSITIVE);
+        Button btnNegative = quit.getButton(AlertDialog.BUTTON_NEGATIVE);
+
+        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) btnPositive.getLayoutParams();
+        layoutParams.weight = 10;
+        btnPositive.setLayoutParams(layoutParams);
+        btnNegative.setLayoutParams(layoutParams);
     }
 
     private void checkAnswer(Button selectedOption) {
