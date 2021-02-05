@@ -54,7 +54,8 @@ public class ScoreActivity extends AppCompatActivity {
         homeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openMainActivity();
+                finish();
+                //openMainActivity();
             }
         });
     }
@@ -84,4 +85,7 @@ public class ScoreActivity extends AppCompatActivity {
             levelScore.setText("LEGEND");
         }
     }
+
+    @Override
+    public void onBackPressed() { }
 }
