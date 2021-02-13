@@ -10,6 +10,14 @@ android {
     defaultConfig {
         applicationId "com.example.spotiquiz"
 
+        python{
+            pip{
+                install "pandas"
+                install "numpy"
+                install "matplotlib.pyplot"
+            }
+        }
+
         // give source folder to python
         sourceSets{
             main{
