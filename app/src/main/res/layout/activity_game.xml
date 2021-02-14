@@ -17,7 +17,9 @@
         android:layout_alignStart="@id/text_question"
         android:layout_alignEnd="@id/text_question"
         android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_alignLeft="@id/text_question"
+        android:layout_alignRight="@id/text_question">
 
         <ProgressBar
             android:id="@+id/progress_bar"
@@ -53,7 +55,8 @@
         android:background="@drawable/domanda"
         android:textAlignment="center"
         android:textColor="@color/black"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:gravity="center_horizontal" />
 
     <LinearLayout
         android:id="@+id/options_container"

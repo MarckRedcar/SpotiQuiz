@@ -9,8 +9,9 @@
         android:roundIcon="@mipmap/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".StatsActivityTop10"></activity>
+        <activity android:name=".StatsActivityYear"></activity>
         <activity android:name=".StatsActivityDecade" />
+        <activity android:name=".StatsActivityTop10" />
         <activity android:name=".StatsActivityGenre" />
         <activity android:name=".StatsActivityArtist" />
         <activity android:name=".MainActivity">

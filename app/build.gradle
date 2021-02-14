@@ -13,6 +13,10 @@ android {
         python{
             pip{
                 install "numpy"
+                install "pandas"
+                install "matplotlib"
+                install "pillow"
+                install "opencv-contrib-python-headless"
             }
         }
 
@@ -38,6 +42,7 @@ android {
         // here i will give path to my python.exe, in your system it may be other
         python {
             buildPython "C:/Users/marco/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Python 3.8/python.exe"
+            buildPython "C:/Windows/py.exe", "-3.8"
         }
 
     }

@@ -13,6 +13,7 @@ import android.widget.Button;
 public class StatsActivity extends AppCompatActivity {
     private Button artistBtn;
     private Button genreBtn;
+    private Button yearBtn;
     private Button decadeBtn;
     private Button top10Btn;
     private Animation scaleUp, scaleDown;
@@ -24,6 +25,7 @@ public class StatsActivity extends AppCompatActivity {
 
         artistBtn = findViewById(R.id.artist_button);
         genreBtn = findViewById(R.id.genre_button);
+        yearBtn = findViewById(R.id.year_button);
         decadeBtn = findViewById(R.id.decade_button);
         top10Btn = findViewById(R.id.top10_button);
 
@@ -51,6 +53,19 @@ public class StatsActivity extends AppCompatActivity {
                     genreBtn.startAnimation(scaleUp);
                 } else if (motionEvent.getAction()==MotionEvent.ACTION_UP) {
                     genreBtn.startAnimation(scaleDown);
+                }
+                return false;
+            }
+        });
+
+        //pressed year button animation
+        yearBtn.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                if (motionEvent.getAction()==MotionEvent.ACTION_DOWN) {
+                    yearBtn.startAnimation(scaleUp);
+                } else if (motionEvent.getAction()==MotionEvent.ACTION_UP) {
+                    yearBtn.startAnimation(scaleDown);
                 }
                 return false;
             }
@@ -96,6 +111,13 @@ public class StatsActivity extends AppCompatActivity {
             }
         });
 
+        yearBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openStatsActivityYear();
+            }
+        });
+
         decadeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -118,6 +140,11 @@ public class StatsActivity extends AppCompatActivity {
 
     public void openStatsActivityGenre() {
         Intent intent = new Intent(this, StatsActivityGenre.class);
+        startActivity(intent);
+    }
+
+    public void openStatsActivityYear() {
+        Intent intent = new Intent(this, StatsActivityYear.class);
         startActivity(intent);
     }
 
