@@ -6,7 +6,10 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Base64;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -20,9 +23,10 @@ import static android.util.Base64.*;
 
 public class StatsActivityArtist extends AppCompatActivity {
 
-    EditText artistStr;
-    Button viewBtn;
-    ImageView artistPlot, artistPie;
+    private EditText artistStr;
+    private Button viewBtn;
+    private ImageView artistPlot, artistPie;
+    private Animation scaleUp, scaleDown;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,10 +38,26 @@ public class StatsActivityArtist extends AppCompatActivity {
         artistPlot = (ImageView)findViewById(R.id.artist_plot);
         artistPie = (ImageView)findViewById(R.id.artist_pie);
 
+        scaleUp = AnimationUtils.loadAnimation(this, R.anim.scale_up);
+        scaleDown = AnimationUtils.loadAnimation(this, R.anim.scale_down);
+
         if(!Python.isStarted())
             Python.start(new AndroidPlatform(this));
 
         Python py = Python.getInstance();
+
+        //pressed view button animation
+        viewBtn.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                if (motionEvent.getAction()==MotionEvent.ACTION_DOWN) {
+                    viewBtn.startAnimation(scaleUp);
+                } else if (motionEvent.getAction()==MotionEvent.ACTION_UP) {
+                    viewBtn.startAnimation(scaleDown);
+                }
+                return false;
+            }
+        });
 
         viewBtn.setOnClickListener(new View.OnClickListener() {
             @Override
