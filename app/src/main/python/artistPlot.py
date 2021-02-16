@@ -9,17 +9,24 @@ from os.path import dirname, join
 
 def plot(artistName):
 
-    #plot bar
+    #definition graphic figure
     fig = plt.figure()
+
+    #loading data
     filename = join(dirname(__file__), "libs/data.csv")
     data = pd.read_csv(filename)
 
+    #suitable parameter setting
     artist = artistName.title()
     artist = "'" + artist + "'"
 
+    #data filtering by parameter
     data = data[data['artists'].str.contains(artist)]
 
+    #new table with two columns, index and count
     songs_by_year = pd.crosstab(index=data['year'], columns=['count_songs'], colnames=[''])
+
+    ### PLOT FEATURES ###
 
     x_ticks = np.arange(data['year'].min(), data['year'].max()+1)
     y_ticks = np.arange(0, songs_by_year['count_songs'].max()+3, 3)
@@ -30,9 +37,11 @@ def plot(artistName):
 
     plt.xticks(x_ticks, rotation=90)
     plt.yticks(y_ticks)
-    #plt.ylabel('Counter Songs', fontdict={'fontweight':'bold', 'fontsize': 14})
+    plt.ylabel('Counter Songs', fontdict={'fontweight':'bold', 'fontsize': 14})
     #plt.xlabel('Year', fontdict={'fontweight':'bold', 'fontsize': 14})
     plt.title(artist.strip("'") + ' stats', fontdict={'fontweight':'bold', 'fontsize': 18})
+
+    ### BASE64 CODING AND SAVING IN BUFFER ###
 
     fig.canvas.draw()
 

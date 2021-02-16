@@ -9,18 +9,24 @@ from os.path import dirname, join
 
 def plot(decadeName):
 
-    #plot bar
-    fig = plt.figure()
+    #definition graphic figure
+    fig = plt.figure(figsize=(15,20))
+
+    #loading data
     filename = join(dirname(__file__), "libs/data.csv")
     data = pd.read_csv(filename)
 
+    #suitable parameter setting
     decade = decadeName
 
+    #data filtering by parameter
     data['decade'] = (10 * (data['year'] // 10)).astype(str) + 's'
     data = data[data['decade'] == decade]
     data = data.groupby('artists', as_index=False)['popularity'].mean()
     data = data.nlargest(10, 'popularity')
     data = data.sort_values('artists')
+
+    ### PLOT FEATURES ###
 
     clrs = ['black' if (x < data['popularity'].max()) else 'green' for x in data['popularity'] ]
 
@@ -28,8 +34,10 @@ def plot(decadeName):
 
     plt.xticks(rotation=90)
     plt.ylabel('Popularity', fontdict={'fontweight':'bold', 'fontsize': 14})
-    plt.xlabel('Artists', fontdict={'fontweight':'bold', 'fontsize': 14})
+    #plt.xlabel('Artists', fontdict={'fontweight':'bold', 'fontsize': 14})
     plt.title('Popular artists of ' + decade , fontdict={'fontweight':'bold', 'fontsize': 18})
+
+    ### BASE64 CODING AND SAVING IN BUFFER ###
 
     fig.canvas.draw()
 

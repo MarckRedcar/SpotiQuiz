@@ -9,13 +9,18 @@ from os.path import dirname, join
 
 def plot():
 
-    #plot bar
-    fig = plt.figure()
+    #definition graphic figure
+    fig = plt.figure(figsize=(15,18))
+
+    #loading data
     filename = join(dirname(__file__), "libs/data.csv")
     data = pd.read_csv(filename)
 
+    #data filtering
     data = data.nlargest(10, 'popularity')
     data = data.sort_values('name')
+
+    ### PLOT FEATURES ###
 
     clrs = ['black' if (x < data['popularity'].max()) else 'green' for x in data['popularity'] ]
 
@@ -23,8 +28,10 @@ def plot():
 
     plt.xticks(rotation=90)
     plt.ylabel('Popularity', fontdict={'fontweight':'bold', 'fontsize': 18})
-    plt.xlabel('Artists', fontdict={'fontweight':'bold', 'fontsize': 18})
+    #plt.xlabel('Artists', fontdict={'fontweight':'bold', 'fontsize': 18})
     plt.title('Top 10 Songs', fontdict={'fontweight':'bold', 'fontsize': 18})
+
+    ### BASE64 CODING AND SAVING IN BUFFER ###
 
     fig.canvas.draw()
 
