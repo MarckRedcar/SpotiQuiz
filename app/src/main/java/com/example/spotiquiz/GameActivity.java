@@ -31,7 +31,6 @@ import java.util.concurrent.TimeUnit;
 
 public class GameActivity extends AppCompatActivity {
 
-    //Button defBtn = new Button(this);
     private TextView question;
     private LinearLayout optionsContainer;
     private Button nextBtn;
@@ -60,16 +59,20 @@ public class GameActivity extends AppCompatActivity {
         scaleDown = AnimationUtils.loadAnimation(this, R.anim.scale_down);
 
         list = new ArrayList<>();
-        list.add(new QuestionModel("\nquestion 1", "a", "b", "c", "d", "a"));
-        list.add(new QuestionModel("\nquestion 2", "a", "b", "c", "d", "d"));
-        list.add(new QuestionModel("\nquestion 3", "a", "b", "c", "d", "b"));
-        list.add(new QuestionModel("\nquestion 4", "a", "b", "c", "d", "a"));
-        list.add(new QuestionModel("\nquestion 5", "a", "b", "c", "d", "c"));
-        //list.add(new QuestionModel("\nquestion 6", "a", "b", "c", "d", "a"));
-        //list.add(new QuestionModel("\nquestion 7", "a", "b", "c", "d", "d"));
-        //list.add(new QuestionModel("\nquestion 8", "a", "b", "c", "d", "b"));
-        //list.add(new QuestionModel("\nquestion 9", "a", "b", "c", "d", "c"));
-        //list.add(new QuestionModel("\nquestion 10", "a", "b", "c", "d", "c"));
+        list.add(new QuestionModel("\n" +
+                "What is the most popular\nartist/band of all time?", "CJ", "Queen", "Elton John", "Pink Floyd", "CJ"));
+        list.add(new QuestionModel("\nWhich of the following\ndecades is the most\npopular ever?", "1990s", "2010s", "1980s", "2000s", "2000s"));
+        list.add(new QuestionModel("\nIn the 2010s\nwhich was the most\npopular artist?", "Regard", "Topic & A7S", "Trevor Daniel", "Ed Sheeran", "Topic & A7S"));
+        list.add(new QuestionModel("\n" +
+                "Which of the following\ngenres belongs\nto Sum 41?", "Pop", "Punk", "Rock", "Metal", "Punk"));
+        list.add(new QuestionModel("\n" +
+                "What is the most\npopular song\nof all time?", "DAKITI", "Whoopty", "drivers license", "WHITOUT YOU", "drivers license"));
+        list.add(new QuestionModel("\nIn which year\nEd Sheeran released\nthe most songs?", "2017", "2011", "2014", "2019", "2017"));
+        list.add(new QuestionModel("\nWhich artist\nwas the most popular\nin 1975?", "Pink Floyd", "Francesco De Gregori", "Mike Oldfield", "Hot Chocolate", "Hot Chocolate"));
+        list.add(new QuestionModel("\n" +
+                "Which of the following\ngenres belongs\nto Eminem?", "Pop", "Rap", "Rock", "Urban contemporary", "Rap"));
+        list.add(new QuestionModel("\nWho is the most popular\npop artist?", "Tones And I", "Calum Scott", "Sam Fischer", "Alexander 23", "Tones And I"));
+        list.add(new QuestionModel("\nWhat is the most popular\ngenre ever?", "Irish pop", "Afroswing", "Chinese eletropop", "Estonian pop", "Chinese eletropop"));
 
         for (int i = 0; i < 4; i++) {
             optionsContainer.getChildAt(i).setOnClickListener(new View.OnClickListener() {
