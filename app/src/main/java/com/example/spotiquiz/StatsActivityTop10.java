@@ -36,14 +36,11 @@ public class StatsActivityTop10 extends AppCompatActivity {
 
         Python py = Python.getInstance();
 
-        PyObject pyobj1 = py.getModule("top10_artist");
-        PyObject pyobj2 = py.getModule("top10_genre");
-        PyObject pyobj3 = py.getModule("top10_song");
-        PyObject pyobj4 = py.getModule("top10_decade");
-        PyObject obj1 = pyobj1.callAttr("plot");
-        PyObject obj2 = pyobj2.callAttr("plot");
-        PyObject obj3 = pyobj3.callAttr("plot");
-        PyObject obj4 = pyobj4.callAttr("plot");
+        PyObject pyobj = py.getModule("top10");
+        PyObject obj1 = pyobj.callAttr("top10").callAttr("artist");
+        PyObject obj2 = pyobj.callAttr("top10").callAttr("genre");
+        PyObject obj3 = pyobj.callAttr("top10").callAttr("song");
+        PyObject obj4 = pyobj.callAttr("top10").callAttr("decade");
 
         String str1 = obj1.toString();
         String str2 = obj2.toString();

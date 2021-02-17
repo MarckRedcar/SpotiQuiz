@@ -63,10 +63,10 @@ public class StatsActivityArtist extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                PyObject pyobj1 = py.getModule("artistPlot");
-                PyObject pyobj2 = py.getModule("artistPie");
-                PyObject obj1 = pyobj1.callAttr("plot", artistStr.getText().toString());
-                PyObject obj2 = pyobj2.callAttr("pie", artistStr.getText().toString());
+                PyObject pyobj1 = py.getModule("artist");
+                //PyObject pyobj2 = py.getModule("artistPie");
+                PyObject obj1 = pyobj1.callAttr("artist", artistStr.getText().toString()).callAttr("plot");
+                PyObject obj2 = pyobj1.callAttr("artist", artistStr.getText().toString()).callAttr("pie");
 
                 String str1 = obj1.toString();
                 String str2 = obj2.toString();

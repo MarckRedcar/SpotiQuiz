@@ -61,7 +61,7 @@ public class StatsActivityDecade extends AppCompatActivity {
             public void onClick(View view) {
 
                 PyObject pyobj = py.getModule("decade");
-                PyObject obj = pyobj.callAttr("plot", decadeStr.getText().toString());
+                PyObject obj = pyobj.callAttr("decade", decadeStr.getText().toString()).callAttr("plot");
 
                 String str = obj.toString();
 

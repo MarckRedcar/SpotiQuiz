@@ -60,7 +60,7 @@ public class StatsActivityGenre extends AppCompatActivity {
             public void onClick(View view) {
 
                 PyObject pyobj = py.getModule("genre");
-                PyObject obj = pyobj.callAttr("plot", genreStr.getText().toString());
+                PyObject obj = pyobj.callAttr("genre", genreStr.getText().toString()).callAttr("plot");;
 
                 String str = obj.toString();
 
