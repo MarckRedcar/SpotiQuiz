@@ -1,0 +1,84 @@
+{
+	"questions": [
+	{
+		"question": "What is the most popular artist/band of all time?",
+		"optionA": "CJ",
+		"optionB": "Queen",
+		"optionC": "Elton John",
+		"optionD": "Pink Floyd",
+		"correctANS": "CJ"
+		},
+	{
+		"question": "Which of the following decades is the most popular ever?",
+		"optionA": "1990s",
+		"optionB": "2010s",
+		"optionC": "1980s",
+		"optionD": "2000s",
+		"correctANS": "2000s"
+		},
+	{
+		"question": "In the 2010s which was the most popular artist?",
+		"optionA": "Regard",
+		"optionB": "Topic & A7S",
+		"optionC": "Trevor Daniel",
+		"optionD": "Ed Sheeran",
+		"correctANS": "Topic & A7S"
+		},
+	{
+		"question": "Which of the following genres belongs to Sum 41?",
+		"optionA": "Pop",
+		"optionB": "Punk",
+		"optionC": "Rock",
+		"optionD": "Metal",
+		"correctANS": "Punk"
+		},
+	{
+		"question": "What is the most popular song of all time?",
+		"optionA": "DAKITI",
+		"optionB": "Whoopty",
+		"optionC": "drivers license",
+		"optionD": "WHITOUT YOU",
+		"correctANS": "drivers license"
+		},
+	{
+		"question": "In which year Ed Sheeran released the most songs?",
+		"optionA": "2017",
+		"optionB": "2011",
+		"optionC": "2014",
+		"optionD": "2019",
+		"correctANS": "2017"
+		},
+	{
+		"question": "Which artist was the most popular in 1975?",
+		"optionA": "Pink Floyd",
+		"optionB": "Francesco De Gregori",
+		"optionC": "Mike Oldfield",
+		"optionD": "Hot Chocolate",
+		"correctANS": "Hot Chocolate"
+		},
+	{
+		"question": "Which of the following genres belongs to Eminem?",
+		"optionA": "Pop",
+		"optionB": "Rap",
+		"optionC": "Rock",
+		"optionD": "Urban contemporary",
+		"correctANS": "Rap"
+		},
+	{
+		"question": "Who is the most popular pop artist?",
+		"optionA": "Tones And I",
+		"optionB": "Calum Scott",
+		"optionC": "Sam Fischer",
+		"optionD": "Alexander 23",
+		"correctANS": "Tones And I"
+		},
+	{
+		"question": "What is the most popular genre ever?",
+		"optionA": "Irish pop",
+		"optionB": "Afroswing",
+		"optionC": "Chinese eletropop",
+		"optionD": "Estonian pop",
+		"correctANS": "Chinese eletropop"
+		}
+	]
+}

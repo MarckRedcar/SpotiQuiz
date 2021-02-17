@@ -1,15 +1,12 @@
 package com.example.spotiquiz;
 
 import android.animation.Animator;
-import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
-import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
@@ -23,11 +20,15 @@ import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.spotiquiz.R;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 public class GameActivity extends AppCompatActivity {
 
@@ -59,6 +60,8 @@ public class GameActivity extends AppCompatActivity {
         scaleDown = AnimationUtils.loadAnimation(this, R.anim.scale_down);
 
         list = new ArrayList<>();
+        list = new ArrayList<>();
+
         list.add(new QuestionModel("\n" +
                 "What is the most popular\nartist/band of all time?", "CJ", "Queen", "Elton John", "Pink Floyd", "CJ"));
         list.add(new QuestionModel("\nWhich of the following\ndecades is the most\npopular ever?", "1990s", "2010s", "1980s", "2000s", "2000s"));
@@ -73,7 +76,10 @@ public class GameActivity extends AppCompatActivity {
                 "Which of the following\ngenres belongs\nto Eminem?", "Pop", "Rap", "Rock", "Urban contemporary", "Rap"));
         list.add(new QuestionModel("\nWho is the most popular\npop artist?", "Tones And I", "Calum Scott", "Sam Fischer", "Alexander 23", "Tones And I"));
         list.add(new QuestionModel("\nWhat is the most popular\ngenre ever?", "Irish pop", "Afroswing", "Chinese eletropop", "Estonian pop", "Chinese eletropop"));
-
+/*
+        loadAllQuestions();
+        Collections.shuffle(list);
+*/
         for (int i = 0; i < 4; i++) {
             optionsContainer.getChildAt(i).setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -130,14 +136,6 @@ public class GameActivity extends AppCompatActivity {
             }
         });
     }
-/*
-    public boolean onKeyDown(int key_code, KeyEvent key_event) {
-        if  (key_code == KeyEvent.KEYCODE_BACK) {
-            super.onKeyDown(key_code, key_event);
-            return true;
-        }
-        return false;
-    }*/
 
     //question change animation
     private void playAnim(View view, final int value, String data) {
@@ -257,4 +255,56 @@ public class GameActivity extends AppCompatActivity {
             }
         }
     }
+/*
+    // upload questions in List
+    private void loadAllQuestions() {
+        list = new ArrayList<>();
+
+        String jsonStr = loadJSONFromAsset();
+
+        try {
+            JSONObject jsonObj = new JSONObject(jsonStr);
+            JSONArray questions = jsonObj.getJSONArray("question");
+            for (int i = 0; i < questions.length(); i++ ) {
+                JSONObject question = questions.getJSONObject(i);
+
+                String questionString = question.getString("question");
+                String optionAString = question.getString("optionA");
+                String optionBString = question.getString("optionB");
+                String optionCString = question.getString("optionC");
+                String optionDString = question.getString("optionD");
+                String correctANSString = question.getString("correctANS");
+
+                list.add(new QuestionModel(
+                        questionString,
+                        optionAString,
+                        optionBString,
+                        optionCString,
+                        optionDString,
+                        correctANSString
+                ));
+
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // read file json
+    private String loadJSONFromAsset() {
+        String json = null;
+        try {
+            InputStream is = getAssets().open("questions.json");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            json = new String(buffer, "UTF-8");
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return json;
+    }
+ */
 }
